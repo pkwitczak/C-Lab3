@@ -121,23 +121,81 @@ Nagłówek: `<math.h>`.
 
 Sprawdza, czy wartość zmiennoprzecinkowa jest skończona. Zwraca wartość różną od zera dla wartości skończonej, a zero dla nieskończoności i NaN.
 
-## Funkcje arytmetyczne
+## Funkcje w języku C
 
-Każda funkcja arytmetyczna powinna przyjmować dwa argumenty typu `float` i zwracać wynik typu `float`.
+Funkcja jest wydzieloną częścią programu wykonującą określone zadanie. Może przyjmować argumenty i zwracać wynik.
 
-Zastosuj nazwy:
+Definicja funkcji składa się z:
 
-- `add` — dodawanie,
-- `subtract` — odejmowanie,
-- `multiply` — mnożenie,
-- `divide` — dzielenie.
+- typu zwracanego wyniku,
+- nazwy funkcji,
+- listy parametrów wraz z ich typami,
+- ciała funkcji, czyli instrukcji zapisanych w nawiasach klamrowych.
 
-Zachowaj kolejność argumentów:
+Ogólny schemat:
 
-- odejmowanie oznacza pierwsza liczba minus druga,
-- dzielenie oznacza pierwsza liczba podzielona przez drugą.
+```text
+typ_wyniku nazwa_funkcji(typ parametr_1, typ parametr_2)
+{
+    instrukcje;
+    return wynik;
+}
+```
 
-Funkcje arytmetyczne nie powinny pobierać danych z klawiatury ani wypisywać wyników.
+### Parametry i argumenty
+
+Parametry to zmienne wymienione w definicji funkcji. Argumenty to wartości przekazywane podczas jej wywołania.
+
+Argumenty przyporządkowuje się parametrom według kolejności. Pierwszy argument trafia do pierwszego parametru, drugi do drugiego.
+
+W języku C argumenty są przekazywane przez wartość. Funkcja otrzymuje kopie przekazanych wartości. Zmiana parametru wewnątrz funkcji nie zmienia zmiennej użytej jako argument.
+
+### Zwracanie wyniku
+
+Instrukcja `return` kończy wykonanie funkcji i przekazuje wynik do miejsca jej wywołania.
+
+Zwróconą wartość można przypisać do zmiennej, wykorzystać w wyrażeniu albo przekazać jako argument innej funkcji.
+
+Funkcja, która nie zwraca wartości, ma typ wyniku `void`.
+
+### Deklaracja i definicja
+
+Deklaracja funkcji, nazywana również prototypem, określa jej nazwę, typ wyniku i typy parametrów. Kończy się średnikiem i nie zawiera ciała funkcji.
+
+Definicja zawiera również ciało funkcji.
+
+Przed wywołaniem funkcji kompilator musi znać jej deklarację. Możesz:
+
+- umieścić definicję funkcji przed miejscem wywołania,
+- umieścić prototyp przed `main`, a definicję poniżej `main`.
+
+### Zmienne lokalne
+
+Parametry i zmienne zadeklarowane w ciele funkcji są lokalne dla tej funkcji. Nie można odwoływać się do nich po nazwie z innej funkcji.
+
+Różne funkcje mogą mieć zmienne o takich samych nazwach — są to odrębne zmienne.
+
+## Przykład: odejmowanie dwóch liczb typu `float`
+
+```c
+#include <stdio.h>
+
+float subtract(float a, float b)
+{
+    return a - b;
+}
+
+int main(void)
+{
+    float first = 15.5f;
+    float second = 4.25f;
+    float result = subtract(first, second);
+
+    printf("result: %.4f\n", result);
+
+    return 0;
+}
+```
 
 ## Odwrotna notacja polska
 
